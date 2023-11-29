@@ -1,20 +1,17 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-export const fetchTracks = createAsyncThunk(
-  "tracks/fetchTracks",
-  async () => {
-    try {
-      const res = await fetch("http://127.0.0.1:8000/api/tracks/");
-      if (!res.ok) throw new Error("Failed to fetch tracks.");
+export const fetchTracks = createAsyncThunk("tracks/fetchTracks", async () => {
+  try {
+    const res = await fetch("http://127.0.0.1:8000/api/tracks/");
+    if (!res.ok) throw new Error("Failed to fetch tracks.");
 
-      const data = await res.json();
-      return data;
-    } catch (err) {
-      console.error("Error fetching tracks: ", err);
-      throw err;
-    }
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.error("Error fetching tracks: ", err);
+    throw err;
   }
-);
+});
 
 export const fetchTrackById = createAsyncThunk(
   "tracks/fetchTrackById",
@@ -29,7 +26,7 @@ export const fetchTrackById = createAsyncThunk(
       console.error("Error fetching track details: ", err);
       throw err;
     }
-  }
+  },
 );
 
 export const createTrack = createAsyncThunk(
@@ -52,7 +49,7 @@ export const createTrack = createAsyncThunk(
       console.error("Error creating track: ", err);
       throw err;
     }
-  }
+  },
 );
 
 export const fetchTracksByUserId = createAsyncThunk(
@@ -69,19 +66,22 @@ export const fetchTracksByUserId = createAsyncThunk(
       console.error("Error fetching tracks for this user: ", err);
       throw err;
     }
-  }
+  },
 );
 
 export const stopTrack = createAsyncThunk(
   "tracks/stopTrack",
   async (trackId) => {
     try {
-      const res = await fetch(`http://127.0.0.1:8000/api/tracks/stop/${trackId}/`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
+      const res = await fetch(
+        `http://127.0.0.1:8000/api/tracks/stop/${trackId}/`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
         },
-      });
+      );
 
       if (!res.ok) throw new Error("Failed to stop track.");
 
@@ -91,14 +91,16 @@ export const stopTrack = createAsyncThunk(
       console.error("Error stopping track: ", err);
       throw err;
     }
-  }
+  },
 );
 
 export const fetchWeeklyTotalDuration = createAsyncThunk(
   "tracks/fetchWeeklyTotalDuration",
   async (userId) => {
     try {
-      const res = await fetch(`http://127.0.0.1:8000/api/tracks/wtd/${userId}/`);
+      const res = await fetch(
+        `http://127.0.0.1:8000/api/tracks/wtd/${userId}/`,
+      );
       if (!res.ok) throw new Error("Failed to fetch weekly total duration.");
 
       const data = await res.json();
@@ -107,7 +109,7 @@ export const fetchWeeklyTotalDuration = createAsyncThunk(
       console.error("Error fetching weekly total duration: ", err);
       throw err;
     }
-  }
+  },
 );
 
 export const tracksSlice = createSlice({
@@ -117,7 +119,7 @@ export const tracksSlice = createSlice({
     isError: false,
     tracks: [],
     selectedTrack: null,
-    weeklyTotalDuration: null
+    weeklyTotalDuration: null,
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -212,7 +214,6 @@ export const tracksSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
       });
-
   },
 });
 

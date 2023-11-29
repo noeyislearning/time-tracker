@@ -1,11 +1,11 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialUser = {
   id: null,
-  email: '',
-  user_name: '',
-  first_name: '',
-  last_name: '',
+  email: "",
+  user_name: "",
+  first_name: "",
+  last_name: "",
   start_date: null, // Date or timestamp
   is_staff: false,
   is_active: true,
@@ -18,7 +18,7 @@ const initialState = {
   isLoading: false,
   isError: false,
   user: initialUser, // Use the defined initialUser
-  token: null
+  token: null,
 };
 
 export const registerUser = createAsyncThunk(
@@ -28,8 +28,8 @@ export const registerUser = createAsyncThunk(
       const res = await fetch("http://127.0.0.1:8000/api/users/register/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(userData)
-      })
+        body: JSON.stringify(userData),
+      });
       if (!res.ok) {
         // If response status is not OK, handle server errors here
         const errorData = await res.json();
@@ -37,14 +37,14 @@ export const registerUser = createAsyncThunk(
         return rejectWithValue(errorData);
       }
 
-      const data = await res.json()
-      return data
+      const data = await res.json();
+      return data;
     } catch (err) {
-        console.error("Error registering user: ", err)
-      throw err
+      console.error("Error registering user: ", err);
+      throw err;
     }
-  }
-)
+  },
+);
 
 export const loginUser = createAsyncThunk(
   "users/loginUser",
@@ -53,8 +53,8 @@ export const loginUser = createAsyncThunk(
       const res = await fetch("http://127.0.0.1:8000/api/users/login/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(userData)
-      })
+        body: JSON.stringify(userData),
+      });
       if (!res.ok) {
         // If response status is not OK, handle server errors here
         const errorData = await res.json();
@@ -62,14 +62,14 @@ export const loginUser = createAsyncThunk(
         return rejectWithValue(errorData);
       }
 
-      const data = await res.json()
-      return data
+      const data = await res.json();
+      return data;
     } catch (err) {
-        console.error("Error logging in user: ", err)
-      throw err
+      console.error("Error logging in user: ", err);
+      throw err;
     }
-  }
-)
+  },
+);
 
 export const logoutUser = createAsyncThunk(
   "users/logoutUser",
@@ -78,7 +78,7 @@ export const logoutUser = createAsyncThunk(
       const res = await fetch("http://127.0.0.1:8000/api/users/logout/", {
         method: "POST",
         headers: {
-          "Authorization": `Bearer ${refreshToken}`, // Include access token in headers
+          Authorization: `Bearer ${refreshToken}`, // Include access token in headers
           "Content-Type": "application/json",
         },
       });
@@ -92,7 +92,7 @@ export const logoutUser = createAsyncThunk(
       console.error("Error logging out user: ", err);
       throw err;
     }
-  }
+  },
 );
 
 export const fetchUserData = async (accessToken) => {
@@ -100,7 +100,7 @@ export const fetchUserData = async (accessToken) => {
     const response = await fetch("http://127.0.0.1:8000/api/users/user-data/", {
       method: "GET",
       headers: {
-        "Authorization": `Bearer ${accessToken}`,
+        Authorization: `Bearer ${accessToken}`,
         "Content-Type": "application/json",
       },
     });
@@ -116,7 +116,6 @@ export const fetchUserData = async (accessToken) => {
     throw error;
   }
 };
-
 
 export const fetchUserDetails = createAsyncThunk(
   "users/fetchUserDetails",
@@ -134,7 +133,7 @@ export const fetchUserDetails = createAsyncThunk(
       console.error("Error fetching user details: ", error);
       throw error;
     }
-  }
+  },
 );
 
 export const authSlice = createSlice({
@@ -142,8 +141,8 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     setTokensFromStorage: (state, action) => {
-      state.token = action.payload.accessToken
-      state.user = action.payload.user
+      state.token = action.payload.accessToken;
+      state.user = action.payload.user;
     },
     setUserFromLocalStorage: (state, action) => {
       state.user = action.payload;
@@ -154,91 +153,89 @@ export const authSlice = createSlice({
     builder
       // Set isLoading to true and isError to false when the registerUser
       .addCase(registerUser.pending, (state) => {
-        state.isLoading = true
-        state.isError = false
-      })
-      // Store the fetched user in the user object
-      .addCase(registerUser.fulfilled, (state, action) => {
-        state.isLoading = false
-        state.user = action.payload
-      })
-      // Reset the state to the initial state if there is an error
-      .addCase(registerUser.rejected, (state, action) => {
-        console.error("Error registering user: ", action.payload)
-        state.isLoading = false
-        state.isError = true
-        state.serverError = action.payload
-      }),
-
-    /** Login User */
-    builder
-      // Set isLoading to true and isError to false when the loginUser
-      .addCase(loginUser.pending, (state) => {
-        state.isLoading = true
-        state.isError = false
-      })
-      // Store the fetched user in the user object
-      .addCase(loginUser.fulfilled, (state, action) => {
-        state.isLoading = false
-        state.user = {
-          id: action.payload.user_id,
-          email: action.payload.email,
-          userName: action.payload.user_name,
-          firstName: action.payload.first_name,
-          lastName: action.payload.last_name,
-          isLoggedIn: action.payload.is_login
-        };
-        state.token = action.payload.access
-        state.serverError = null
-      })
-      // Reset the state to the initial state if there is an error
-      .addCase(loginUser.rejected, (state, action) => {
-        console.error("Error logging in user: ", action.payload)
-        state.isLoading = false
-        state.isError = true
-        state.serverError = action.payload
-      }),
-
-    /** Logout User */
-    builder
-      // Set isLoading to true and isError to false when the logoutUser
-      .addCase(logoutUser.pending, (state) => {
-        state.isLoading = true
-        state.isError = false
-      })
-      // Reset the state to the initial state if the logoutUser is successful
-      .addCase(logoutUser.fulfilled, (state) => {
-        state.isLoading = false
-        state.user = initialUser
-        state.token = null
-      })
-      // Reset the state to the initial state if there is an error
-      .addCase(logoutUser.rejected, (state, action) => {
-        console.error("Error logging out user: ", action.payload)
-        state.isLoading = false
-        state.isError = true
-        state.serverError = action.payload
-      }),
-
-    /** Fetch User Details */
-    builder
-      .addCase(fetchUserDetails.pending, (state) => {
         state.isLoading = true;
         state.isError = false;
       })
-      .addCase(fetchUserDetails.fulfilled, (state, action) => {
+      // Store the fetched user in the user object
+      .addCase(registerUser.fulfilled, (state, action) => {
         state.isLoading = false;
         state.user = action.payload;
       })
-      .addCase(fetchUserDetails.rejected, (state, action) => {
-        console.error("Error fetching user details: ", action.payload);
+      // Reset the state to the initial state if there is an error
+      .addCase(registerUser.rejected, (state, action) => {
+        console.error("Error registering user: ", action.payload);
         state.isLoading = false;
         state.isError = true;
         state.serverError = action.payload;
-      })
-  }
-})
+      }),
+      /** Login User */
+      builder
+        // Set isLoading to true and isError to false when the loginUser
+        .addCase(loginUser.pending, (state) => {
+          state.isLoading = true;
+          state.isError = false;
+        })
+        // Store the fetched user in the user object
+        .addCase(loginUser.fulfilled, (state, action) => {
+          state.isLoading = false;
+          state.user = {
+            id: action.payload.user_id,
+            email: action.payload.email,
+            userName: action.payload.user_name,
+            firstName: action.payload.first_name,
+            lastName: action.payload.last_name,
+            isLoggedIn: action.payload.is_login,
+          };
+          state.token = action.payload.access;
+          state.serverError = null;
+        })
+        // Reset the state to the initial state if there is an error
+        .addCase(loginUser.rejected, (state, action) => {
+          console.error("Error logging in user: ", action.payload);
+          state.isLoading = false;
+          state.isError = true;
+          state.serverError = action.payload;
+        }),
+      /** Logout User */
+      builder
+        // Set isLoading to true and isError to false when the logoutUser
+        .addCase(logoutUser.pending, (state) => {
+          state.isLoading = true;
+          state.isError = false;
+        })
+        // Reset the state to the initial state if the logoutUser is successful
+        .addCase(logoutUser.fulfilled, (state) => {
+          state.isLoading = false;
+          state.user = initialUser;
+          state.token = null;
+        })
+        // Reset the state to the initial state if there is an error
+        .addCase(logoutUser.rejected, (state, action) => {
+          console.error("Error logging out user: ", action.payload);
+          state.isLoading = false;
+          state.isError = true;
+          state.serverError = action.payload;
+        }),
+      /** Fetch User Details */
+      builder
+        .addCase(fetchUserDetails.pending, (state) => {
+          state.isLoading = true;
+          state.isError = false;
+        })
+        .addCase(fetchUserDetails.fulfilled, (state, action) => {
+          state.isLoading = false;
+          state.user = action.payload;
+        })
+        .addCase(fetchUserDetails.rejected, (state, action) => {
+          console.error("Error fetching user details: ", action.payload);
+          state.isLoading = false;
+          state.isError = true;
+          state.serverError = action.payload;
+        });
+  },
+});
 
-export const { setTokensFromStorage, setUserFromLocalStorage } = authSlice.actions;
+export const { setTokensFromStorage, setUserFromLocalStorage } =
+  authSlice.actions;
 
-export default authSlice.reducer
+export default authSlice.reducer;

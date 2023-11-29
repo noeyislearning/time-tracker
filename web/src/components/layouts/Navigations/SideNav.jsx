@@ -7,16 +7,15 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 /** Heroicons */
-import { ClockIcon } from "@heroicons/react/24/outline"
+import { ClockIcon } from "@heroicons/react/24/outline";
 
 /** Redux related */
-import { useSelector, useDispatch } from "react-redux"
+import { useSelector, useDispatch } from "react-redux";
 import { logoutUser } from "../../../redux/users/reducer";
 
 export default function SideNav() {
-
   /** Redux related */
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   /** React Router DOM */
   const navigate = useNavigate();
@@ -26,8 +25,8 @@ export default function SideNav() {
   const isLoading = useSelector((state) => state.users.isLoading); // New isLoading state
 
   useEffect(() => {
-      localStorage.getItem("refresh_token");
-      localStorage.getItem("access_token");
+    localStorage.getItem("refresh_token");
+    localStorage.getItem("access_token");
   }, [dispatch]);
 
   /** Handling logout */
@@ -40,10 +39,10 @@ export default function SideNav() {
             // Clear tokens from localStorage after successful logout
             localStorage.removeItem("access_token");
             localStorage.removeItem("refresh_token");
-  
+
             // Navigate to login page
             navigate("/");
-  
+
             // Display logout toast
             handleLogoutToast();
           })
@@ -55,7 +54,6 @@ export default function SideNav() {
       console.log("Access token not available");
     }
   };
-  
 
   const handleLogoutToast = () => {
     toast.info("You have successfully logged out!", {
@@ -85,34 +83,33 @@ export default function SideNav() {
           <div className="text-xl">Tools</div>
           <div className="pt-4 w-full flex flex-col items-start gap-4">
             <div className="px-4 py-3 w-full flex flex-row gap-4 items-center bg-slate-800/75 rounded-lg cursor-pointer">
-              <ClockIcon className="w-6 h-6"/>
+              <ClockIcon className="w-6 h-6" />
               <div className="text-base font-medium">Time Tracker</div>
             </div>
           </div>
         </div>
         <div className="p-4 mt-auto w-full flex flex-row items-center justify-between">
-          { isLoading 
-          ? (
+          {isLoading ? (
             <div className="flex flex-col items-start animate-pulse">
               <div className="text-lg">Loading...</div>
               <span className="-mt-1 text-sm text-gray-500">Loading...</span>
             </div>
-            )
-          : (
+          ) : (
             <div className="flex flex-col items-start">
-              <div className="text-lg">{user.first_name} {user.last_name}</div>
+              <div className="text-lg">
+                {user.first_name} {user.last_name}
+              </div>
               <span className="-mt-1 text-sm text-gray-500">{user.email}</span>
             </div>
-            )
-          }
-          <button 
+          )}
+          <button
             className="px-4 py-2 text-sm bg-red-500 rounded-lg tracking-tight"
             onClick={handleLogout}
           >
-              Logout
+            Logout
           </button>
         </div>
       </div>
     </aside>
-  )
+  );
 }

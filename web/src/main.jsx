@@ -1,20 +1,20 @@
-import React from "react"
-import ReactDOM from "react-dom/client"
-import App from "./App.jsx"
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.jsx";
 
 /** React Router DOM */
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 /** Stylesheets */
-import "./assets/css/globals.css"
-import "./assets/css/tooltips.css"
-import "./assets/css/scrollbar.css"
+import "./assets/css/globals.css";
+import "./assets/css/tooltips.css";
+import "./assets/css/scrollbar.css";
 
 /** Components */
-import Auth from "./pages/Auth.jsx"
+import Auth from "./pages/Auth.jsx";
 
 /** Redux related */
-import { Providers } from "./redux/Provider"
+import { Providers } from "./redux/Provider";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -27,4 +27,4 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       </Router>
     </Providers>
   </React.StrictMode>,
-)
+);
