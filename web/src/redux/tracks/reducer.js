@@ -94,6 +94,22 @@ export const stopTrack = createAsyncThunk(
   }
 );
 
+export const fetchWeeklyTotalDuration = createAsyncThunk(
+  "tracks/fetchWeeklyTotalDuration",
+  async (userId) => {
+    try {
+      const res = await fetch(`http://127.0.0.1:8000/api/tracks/wtd/${userId}/`);
+      if (!res.ok) throw new Error("Failed to fetch weekly total duration.");
+
+      const data = await res.json();
+      return data;
+    } catch (err) {
+      console.error("Error fetching weekly total duration: ", err);
+      throw err;
+    }
+  }
+);
+
 export const tracksSlice = createSlice({
   name: "tracks",
   initialState: {
@@ -101,6 +117,7 @@ export const tracksSlice = createSlice({
     isError: false,
     tracks: [],
     selectedTrack: null,
+    weeklyTotalDuration: null
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -180,7 +197,22 @@ export const tracksSlice = createSlice({
       .addCase(stopTrack.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
+      })
+
+      /** Fetching Weekly Total Duration */
+      .addCase(fetchWeeklyTotalDuration.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+      })
+      .addCase(fetchWeeklyTotalDuration.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.weeklyTotalDuration = action.payload;
+      })
+      .addCase(fetchWeeklyTotalDuration.rejected, (state) => {
+        state.isLoading = false;
+        state.isError = true;
       });
+
   },
 });
 

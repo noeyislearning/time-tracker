@@ -6,7 +6,8 @@ from .views import (
     TrackRetrieve,
     TrackListCreate,
     UserTrackList,
-    StopTrackView
+    StopTrackView,
+    WeeklyTotalDurationView
 )
 
 app_name = "tracks"
@@ -21,6 +22,9 @@ urlpatterns = [
 
     # Actions
     path('stop/<pk>/', StopTrackView.as_view(), name='stop_track'),
+
+    # Analytics
+    path('wtd/<user_id>/', WeeklyTotalDurationView.as_view(), name='weekly_total_duration'),
 
     # User
     path('u/<user_id>/', UserTrackList.as_view(), name='user_tracks'),
