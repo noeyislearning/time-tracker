@@ -1,0 +1,59 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "name": "Abroginal Mapping Network",
+      "route": "/abroginal-mapping-network"
+    },
+    {
+      "id": 2,
+      "name": "Bawkbox",
+      "route": "/bawkbox"
+    },
+    {
+      "id": 3,
+      "name": "Citizen Queue System",
+      "route": "/citizen-queue-system"
+    },
+    {
+      "id": 4,
+      "name": "Clarius",
+      "route": "/clarius"
+    },
+    {
+      "id": 5,
+      "name": "Cortico",
+      "route": "/cortico"
+    },
+    {
+      "id": 6,
+      "name": "Cryptsend",
+      "route": "/cryptsend"
+    },
+    {
+      "id": 7,
+      "name": "Economic Web Data Service",
+      "route": "/economic-web-data-service"
+    },
+    {
+      "id": 8,
+      "name": "First Peoples' map of B.C",
+      "route": "/first-peoples-map-of-bc"
+    },
+    {
+      "id": 9,
+      "name": "Groundwater Wells and Aquifers",
+      "route": "/groundwater-wells-and-aquifers"
+    },
+    {
+      "id": 10,
+      "name": "Spyglass",
+      "route": "/spyglass"
+    },
+    {
+      "id": 11,
+      "name": "Westhaven Group",
+      "route": "/westhaven-group"
+    }
+  ]
+}
