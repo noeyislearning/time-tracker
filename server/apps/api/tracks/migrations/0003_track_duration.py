@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('tracks', '0002_initial'),
+        ("tracks", "0002_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='track',
-            name='duration',
+            model_name="track",
+            name="duration",
             field=models.DurationField(blank=True, null=True),
         ),
     ]

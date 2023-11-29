@@ -1,5 +1,3 @@
 export default function ReportProject() {
-  return (
-    <div>ReportProject</div>
-  )
+  return <div>ReportProject</div>;
 }

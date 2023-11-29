@@ -4,14 +4,13 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('tracks', '0003_track_duration'),
+        ("tracks", "0003_track_duration"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='track',
-            name='total_time',
+            model_name="track",
+            name="total_time",
         ),
     ]

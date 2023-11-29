@@ -4,14 +4,13 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('users', '0002_newuser_created_at_newuser_updated_at'),
+        ("users", "0002_newuser_created_at_newuser_updated_at"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='newuser',
-            options={'verbose_name': 'User', 'verbose_name_plural': 'Users'},
+            name="newuser",
+            options={"verbose_name": "User", "verbose_name_plural": "Users"},
         ),
     ]
