@@ -5,41 +5,48 @@ from rest_framework.response import Response
 from .models import Track
 from .serializers import TrackCreateSerializer, TrackRetrieveSerializer
 
+# This view is used to list all tracks
 class TrackList(generics.ListAPIView):
     queryset = Track.objects.all()
     serializer_class = TrackRetrieveSerializer 
 
 
+# This view is used to create a new track
 class TrackCreate(generics.CreateAPIView):
     queryset = Track.objects.all()
     serializer_class = TrackCreateSerializer  
 
 
+# This view is used to list all tracks or create a new track
 class TrackListCreate(generics.ListCreateAPIView):
     queryset = Track.objects.all()
     serializer_class = TrackRetrieveSerializer 
 
 
+# This view is used to retrieve a specific track
 class TrackRetrieve(generics.RetrieveAPIView):
     queryset = Track.objects.all()
     serializer_class = TrackRetrieveSerializer 
 
 
+# This view is used to retrieve, update, or delete a specific track
 class TrackRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = Track.objects.all()
     serializer_class = TrackRetrieveSerializer 
 
-
+# This view is used to list all tracks added by a specific user
 class UserTrackList(generics.ListAPIView):
     serializer_class = TrackRetrieveSerializer
 
     def get_queryset(self):
-        user_id = self.kwargs.get('user_id')  # Extract user_id from URL parameters
+        # Extract user_id from URL parameters
+        user_id = self.kwargs.get('user_id')  
         
         # Filter tracks by the specified user ID
         return Track.objects.filter(added_by_id=user_id)
     
 
+# This view is used to stop a specific track
 class StopTrackView(generics.UpdateAPIView):
     queryset = Track.objects.all()
     serializer_class = TrackRetrieveSerializer 
@@ -53,11 +60,13 @@ class StopTrackView(generics.UpdateAPIView):
         return Response(serializer.data)
 
 
+# This view is used to retrieve the total duration of tracks added by a specific user within a week
 class WeeklyTotalDurationView(generics.RetrieveAPIView):
     serializer_class = TrackRetrieveSerializer
 
     def get_queryset(self):
-        user_id = self.kwargs.get('user_id')  # Extract user_id from URL parameters
+        # Extract user_id from URL parameters
+        user_id = self.kwargs.get('user_id')  
 
         # Get the start and end of the week
         today = timezone.now()
@@ -93,6 +102,7 @@ class WeeklyTotalDurationView(generics.RetrieveAPIView):
         start_date_str = start_of_week.date().strftime('%Y-%m-%d')
         end_date_str = end_of_week.date().strftime('%Y-%m-%d')
 
+        # Return the response
         return Response({
             "start_date": start_date_str,
             "end_date": end_date_str,

@@ -10,7 +10,9 @@ from .views import (
     WeeklyTotalDurationView
 )
 
+# Application namespace
 app_name = "tracks"
+
 
 urlpatterns = [
     # Tracks
