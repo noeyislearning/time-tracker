@@ -9,10 +9,25 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.generics import RetrieveAPIView
 from .serializers import RegisterUserSerializer, CustomAuthTokenSerializer
 
+
+"""
+View to register a new user.
+"""
 class CustomUserRegister(APIView):
     permission_classes = [AllowAny]
 
     def post(self, request, format='json'):
+        """
+        POST request to register a new user.
+
+        Parameters:
+        - request: Request object
+        - format: Format of the request data (default: 'json')
+
+        Returns:
+        - Response: HTTP response object containing user data or errors
+        """
+
         serializer = RegisterUserSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
@@ -21,12 +36,31 @@ class CustomUserRegister(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 
+# This view is used to obtain an authentication token
 class CustomAuthToken(ObtainAuthToken):
+    """
+    View to obtain an authentication token.
+    """
+
+    
     permission_classes = [AllowAny]
     
     serializer_class = CustomAuthTokenSerializer
     
     def post(self, request, *args, **kwargs):
+        """
+        POST request to obtain an authentication token.
+
+        Parameters:
+        - request: Request object
+        - *args: Variable length argument list
+        - **kwargs: Arbitrary keyword arguments
+
+        Returns:
+        - Response: HTTP response object containing tokens and user data or error message
+        """
+
+
         serializer = self.serializer_class(data=request.data, context={'request': request})
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data['user']
@@ -56,9 +90,26 @@ class CustomAuthToken(ObtainAuthToken):
         return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
     
 class CustomLogout(APIView):
+    """
+    View to log out a user.
+    """
+
+
     permission_classes = [IsAuthenticated]
     
     def post(self, request, *args, **kwargs):
+        """
+        POST request to log out a user.
+
+        Parameters:
+        - request: Request object
+        - *args: Variable length argument list
+        - **kwargs: Arbitrary keyword arguments
+
+        Returns:
+        - Response: HTTP response object containing success message or error message
+        """
+
         try:
             # Update "is_login" field to False
             user = request.user
@@ -71,10 +122,28 @@ class CustomLogout(APIView):
 
 
 class RetrieveUserData(RetrieveAPIView):
+    """
+    View to retrieve user data.
+    """
+
+
     permission_classes = [IsAuthenticated]
     authentication_classes = [JWTAuthentication, TokenAuthentication]
     
     def get(self, request, *args, **kwargs):
+        """
+        GET request to retrieve user data.
+
+        Parameters:
+        - request: Request object
+        - *args: Variable length argument list
+        - **kwargs: Arbitrary keyword arguments
+
+        Returns:
+        - Response: HTTP response object containing user data or error message
+        """
+
+        
         user = request.user
         return Response({
             'user_id': user.pk,
