@@ -4,6 +4,7 @@ Time Tracker, A swift and user-friendly tool for teams to log hours, tasks, and 
 
 ## Table of Contents
 
+- [Project Showcase](#project-showcase)
 - [Technologies Used](#technologies-used)
 - [Installation](#installation)
   - [Clone the repository](#clone-the-repository)
@@ -14,6 +15,25 @@ Time Tracker, A swift and user-friendly tool for teams to log hours, tasks, and 
   - [Run the server](#run-the-server)
   - [Run the web](#run-the-web)
   - [Create a superuser (admin account)](#create-a-superuser-admin-account)
+
+## Project Showcase
+
+### Authentication Page (Sign In / Sign Up)
+
+![Authetication Paage](/assets/authpage-signin.png)
+![Authetication Paage](/assets/authpage-signup.png)
+
+### Tracker Page
+
+![Tracker Page](/assets/trackerpage.png)
+
+### Reports Page
+
+![Reports Page](/assets/reportspage.png)
+
+### Project Page (Report)
+
+![Project Page](/assets/projectpage.png)
 
 ## Technologies Used
 
