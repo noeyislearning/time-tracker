@@ -7,7 +7,6 @@
 
 Time Tracker, a swift and user-friendly tool for teams to log hours, tasks, and projects, with automatic date/time recording and weekly work summaries.
 
-
 ## 📃 Table of Contents
 
 - [Project Showcase](#project-showcase)
@@ -29,24 +28,28 @@ Time Tracker, a swift and user-friendly tool for teams to log hours, tasks, and 
 
 ![Authetication Page](/assets/authpage-signin.png)
 ![Authetication Paage](/assets/authpage-signup.png)
+
 </details>
 
 <details>
   <summary>Tracker Page</summary>
 
 ![Tracker Page](/assets/trackerpage.png)
+
 </details>
 
 <details>
   <summary>Reports Page</summary>
 
 ![Reports Page](/assets/reportspage.png)
+
 </details>
 
 <details>
   <summary>Project Page</summary>
 
 ![Project Page](/assets/projectpage.png)
+
 </details>
 
 ## 🛠️ Technologies Used
@@ -58,7 +61,6 @@ Time Tracker, a swift and user-friendly tool for teams to log hours, tasks, and 
 ![https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white)
 ![https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 ![https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
-
 
 - Backend
 
