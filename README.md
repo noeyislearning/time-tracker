@@ -82,100 +82,100 @@ git clone https://github.com/noeyislearning/time-tracker.git
 
 - First go to the `server` directory
 
-```bash
-cd server
-```
+  ```bash
+  cd server
+  ```
 
 - Create a virtual environment
 
-```bash
-python -m venv venv
-```
+  ```bash
+  python -m venv venv
+  ```
 
 - Activate the virtual environment
 
-```bash
-venv\Scripts\activate
-```
+  ```bash
+  venv\Scripts\activate
+  ```
 
 - Install the dependencies
 
-```bash
-pip install -r requirements.txt
-```
+  ```bash
+  pip install -r requirements.txt
+  ```
 
 #### Web - Frontend (React.js)
 
 - Go to the `web` directory
 
-```bash
-cd web
-```
+  ```bash
+  cd web
+  ```
 
 - Install the dependencies
 
-```bash
-npm install
-```
+  ```bash
+  npm install
+  ```
 
 ### Setup database
 
 - Go to the `server` directory
 
-```bash
-cd server
-```
+  ```bash
+  cd server
+  ```
 
 - Make migrations
 
-```bash
-python manage.py makemigrations
-```
+  ```bash
+  python manage.py makemigrations
+  ```
 
 - Migrate
 
-```bash
-python manage.py migrate
-```
+  ```bash
+  python manage.py migrate
+  ```
 
 ### Run the server
 
 - Go to the `server` directory
 
-```bash
-cd server
-```
+  ```bash
+  cd server
+  ```
 
 - Run the server
 
-```bash
-python manage.py runserver
-```
+  ```bash
+  python manage.py runserver
+  ```
 
 ### Run the web
 
 - Go to the `web` directory
 
-```bash
-cd web
-```
+  ```bash
+  cd web
+  ```
 
 - Run the web
 
-```bash
-npm run dev
-```
+  ```bash
+  npm run dev
+  ```
 
 ### Create a superuser (admin account)
 
 - Go to the `server` directory
 
-```bash
-cd server
-```
+  ```bash
+  cd server
+  ```
 
 - Create a superuser
 
-```bash
-python manage.py createsuperuser
-```
+  ```bash
+  python manage.py createsuperuser
+  ```
