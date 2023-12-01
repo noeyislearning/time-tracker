@@ -1,8 +1,14 @@
 # Time Tracker
 
-Time Tracker, A swift and user-friendly tool for teams to log hours, tasks, and projects, with automatic date/time recording and weekly work summaries.
+![MIT License](https://custom-icon-badges.herokuapp.com/badge/MIT_License-262c3e?style=for-the-badge&logoColor=white)
 
-## Table of Contents
+[![DeepSource](https://app.deepsource.com/gh/noeyislearning/time-tracker.svg/?label=active+issues&show_trend=true&token=MfWOQOWyjY4d6cbELJDid_fx)](https://app.deepsource.com/gh/noeyislearning/time-tracker/)
+[![DeepSource](https://app.deepsource.com/gh/noeyislearning/time-tracker.svg/?label=resolved+issues&show_trend=true&token=MfWOQOWyjY4d6cbELJDid_fx)](https://app.deepsource.com/gh/noeyislearning/time-tracker/)
+
+Time Tracker, a swift and user-friendly tool for teams to log hours, tasks, and projects, with automatic date/time recording and weekly work summaries.
+
+
+## 📃 Table of Contents
 
 - [Project Showcase](#project-showcase)
 - [Technologies Used](#technologies-used)
@@ -16,26 +22,34 @@ Time Tracker, A swift and user-friendly tool for teams to log hours, tasks, and 
   - [Run the web](#run-the-web)
   - [Create a superuser (admin account)](#create-a-superuser-admin-account)
 
-## Project Showcase
+## 🖥️ Project Showcase
 
-### Authentication Page (Sign In / Sign Up)
+<details>
+  <summary>Authentication Page (Sign In / Sign Up)</summary>
 
-![Authetication Paage](/assets/authpage-signin.png)
+![Authetication Page](/assets/authpage-signin.png)
 ![Authetication Paage](/assets/authpage-signup.png)
+</details>
 
-### Tracker Page
+<details>
+  <summary>Tracker Page</summary>
 
 ![Tracker Page](/assets/trackerpage.png)
+</details>
 
-### Reports Page
+<details>
+  <summary>Reports Page</summary>
 
 ![Reports Page](/assets/reportspage.png)
+</details>
 
-### Project Page (Report)
+<details>
+  <summary>Project Page</summary>
 
 ![Project Page](/assets/projectpage.png)
+</details>
 
-## Technologies Used
+## 🛠️ Technologies Used
 
 - Frontend
 
@@ -52,7 +66,7 @@ Time Tracker, A swift and user-friendly tool for teams to log hours, tasks, and 
 ![https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=green](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=green)
 ![https://img.shields.io/badge/django%20rest-ff1709?style=for-the-badge&logo=django&logoColor=white](https://img.shields.io/badge/django%20rest-ff1709?style=for-the-badge&logo=django&logoColor=white)
 
-## Installation
+## ⚙️ Installation
 
 ### Clone the repository
 
