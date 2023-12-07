@@ -10,12 +10,15 @@ import { Disclosure } from "@headlessui/react"
 import { TrashIcon, StopIcon, ArrowLongRightIcon, ChevronDownIcon } from "@heroicons/react/24/solid"
 
 /** Redux related */
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { stopTrack } from "../../../redux/tracks/reducer";
 
 export default function ProjectTrackerCard({ track }) {
 
   const dispatch = useDispatch()
+
+  /** States */
+  const isLoading = useSelector((state) => state.tracks.isLoading);
 
   /** Tracks */
   const { title, start_time, end_time, duration } = track;
@@ -103,29 +106,46 @@ export default function ProjectTrackerCard({ track }) {
                 </div>
                 {/* If endTime is null display "On-going" if not display the {duration} */}
                 <div className="flex">
-                  { endTime 
-                    ? 
+                  { endTime ? (
+                    isLoading ? (
+                      <span className="-mt-1 text-lg font-bold">Loading...</span>
+                    ) : (
                       <div className="flex flex-col items-start">
                         <span className="text-xs text-gray-400">Duration</span>
-                        <time className="-mt-1 text-lg font-bold">{duration}</time>
-                        <div className="-mt-2 text-xs text-indigo-400">Good job!</div>
+                        <time className="-mt-1 text-lg font-bold">
+                          {duration}
+                        </time>
+                        <div className="-mt-2 text-xs text-indigo-400">
+                          Good job!
+                        </div>
                       </div>
-                    : <div className="flex flex-col items-start">
-                        <span className="text-xs text-gray-400">Elapsed time</span>
-                        <time className="-mt-1 text-lg font-bold">{elapsedTime}</time>
-                        <div className="-mt-2 text-xs text-green-400">Still running...</div>
-                      </div>
-                  }
+                    )
+                  ) : (
+                    <div className="flex flex-col items-start">
+                      <span className="text-xs text-gray-400">Elapsed time</span>
+                      { isLoading ? (
+                        <span className="-mt-1 text-lg font-bold">Loading...</span>
+                      ) : (
+                        <>
+                          <time className="-mt-1 text-lg font-bold">
+                            { elapsedTime ? elapsedTime : "00:00:00" }
+                          </time>
+                          <div className="-mt-2 text-xs text-green-400">
+                            Still running...
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  )}
                 </div>
               </div>
-              
-              <button
+                <button
                 type="submit" 
-                className="p-2 bg-red-500 rounded-full text-white text-sm tracking-tighter"
+                className={`${endTime ? "hidden" : "flex"} p-2 bg-red-500 rounded-full text-white text-sm tracking-tighter`}
                 onClick={handleStopTrack}
-              >
-                <StopIcon className="w-5 h-5"/>
-              </button>
+                >
+                  <StopIcon className="w-5 h-5"/>
+                </button>
               <Disclosure.Button>
                 <ChevronDownIcon 
                   className={`${
